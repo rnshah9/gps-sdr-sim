@@ -1,0 +1,4 @@
+project: gps-sdr-sim
+target: nmea2um
+cmds:
+  - cmd: /repo/satgen/nmea2um @@ /dev/null
