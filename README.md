@@ -74,7 +74,8 @@ for bladeRF to playback the compressed file.
 Usage: gps-sdr-sim [options]
 Options:
   -e <gps_nav>     RINEX navigation file for GPS ephemerides (required)
-  -u <user_motion> User motion file (dynamic mode)
+  -u <user_motion> User motion file in ECEF x, y, z format (dynamic mode)
+  -x <user_motion> User motion file in lat, lon, height format (dynamic mode)
   -g <nmea_gga>    NMEA GGA stream (dynamic mode)
   -c <location>    ECEF X,Y,Z in meters (static mode) e.g. 3967283.15,1022538.18,4872414.48
   -l <location>    Lat,Lon,Hgt (static mode) e.g. 30.286502,120.032669,100
@@ -92,6 +93,10 @@ The user motion can be specified in either dynamic or static mode:
 
 ```
 > gps-sdr-sim -e brdc3540.14n -u circle.csv
+```
+
+```
+> gps-sdr-sim -e brdc3540.14n -x circle_llh.csv
 ```
 
 ```
@@ -140,6 +145,11 @@ You can also execute these commands via the `bladeRF-cli` script option as below
 > gps-sdr-sim-uhd.py -t gpssim.bin -s 2500000 -x 0
 ```
 
+You can also use `tx_samples_from_file` tool included in the UHD examples:
+```
+> tx_samples_from_file --file gpssim.bin --type short --rate 2500000 --freq 1575420000 --gain 0
+```
+
 #### LimeSDR (in case of 1 Msps 1-bit file, to get full BaseBand dynamic and low RF power):
 
 ```
@@ -169,5 +179,5 @@ Default 3.0MHz. Applicable range 1.0MHz to 5.0MHz.
 
 ### License
 
-Copyright &copy; 2015-2018 Takuji Ebinuma  
+Copyright &copy; 2015-2022 Takuji Ebinuma  
 Distributed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
